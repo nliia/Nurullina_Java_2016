@@ -1,9 +1,9 @@
-package multimod.c_mod;
+package com.nurullina.c;
 
 /**
  * Created by Liia on 15.11.2016.
  */
-public class C {
+public class SumDivide {
     public static int sum(int a, int b) {
         return a + b;
     }

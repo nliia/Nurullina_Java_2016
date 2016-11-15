@@ -1,11 +1,11 @@
-package multimod.b_mod;
+package com.nurullina.b;
 
-import static multimod.c_mod.C.sum;
+import static com.nurullina.c.SumDivide.sum;
 
 /**
  * Created by Liia on 15.11.2016.
  */
-public class B {
+public class ReverseSum {
 
     public static StringBuilder reverseSum(int a, int b) {
         int c = sum(a, b);

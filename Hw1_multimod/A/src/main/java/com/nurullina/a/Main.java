@@ -1,12 +1,12 @@
-package multimod.a_mod;
+package com.nurullina.a;
 
-import static multimod.b_mod.B.reverseSum;
-import static multimod.c_mod.C.divide;
+import static com.nurullina.b.ReverseSum.reverseSum;
+import static com.nurullina.c.SumDivide.divide;
 
 /**
  * Created by Liia on 15.11.2016.
  */
-public class A {
+public class Main {
     public static void main(String[] args) {
         System.out.println("Reversed sum of numbers:" + reverseSum(15, 25));
         System.out.println("Division:" + divide(30, 15));
