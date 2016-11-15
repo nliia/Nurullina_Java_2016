@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Hw1_multimod.iml" filepath="$PROJECT_DIR$/Hw1_multimod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/a_mod/a_mod.iml" filepath="$PROJECT_DIR$/a_mod/a_mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/b_mod/b_mod.iml" filepath="$PROJECT_DIR$/b_mod/b_mod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c_mod/c_mod.iml" filepath="$PROJECT_DIR$/c_mod/c_mod.iml" />
+    </modules>
+  </component>
+</project>
