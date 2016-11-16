@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Reverse</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>reverse</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>com.nurullina</groupId>
-            <artifactId>ProcessNumbers</artifactId>
+            <artifactId>process-numbers</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

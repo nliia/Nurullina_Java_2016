@@ -9,9 +9,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>ProcessNumbers</module>
-        <module>Reverse</module>
-        <module>Main</module>
+        <module>process-numbers</module>
+        <module>reverse</module>
+        <module>main</module>
     </modules>
 
 </project>

@@ -3,7 +3,7 @@ package com.nurullina.ProcessNumbers;
 /**
  * Created by Liia on 15.11.2016.
  */
-public class SumDivide {
+public class MathMethods {
     public static int sum(int a, int b) {
         return a + b;
     }

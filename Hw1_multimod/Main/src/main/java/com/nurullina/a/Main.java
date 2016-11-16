@@ -1,7 +1,8 @@
 package com.nurullina.a;
 
+
+import static com.nurullina.ProcessNumbers.MathMethods.divide;
 import static com.nurullina.Reverse.ReverseSum.reverseSum;
-import static com.nurullina.ProcessNumbers.SumDivide.divide;
 
 /**
  * Created by Liia on 15.11.2016.
