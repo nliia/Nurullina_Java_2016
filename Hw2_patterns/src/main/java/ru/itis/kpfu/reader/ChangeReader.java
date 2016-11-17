@@ -5,17 +5,16 @@ import java.io.*;
 /**
  * Created by Liia on 16.11.2016.
  */
-public class ChangeInputStream extends FilterReader {
+public class ChangeReader extends FilterReader {
 
-    public ChangeInputStream(Reader in) {
+    public ChangeReader(Reader in) {
         super(in);
     }
 
-
     @Override
     public int read() throws IOException {
-       int c = super.read();
-        return c == -1? c : change(c);
+        int c = super.read();
+        return c == -1 ? c : change(c);
     }
 
     @Override
@@ -23,10 +22,9 @@ public class ChangeInputStream extends FilterReader {
         return super.read(cbuf, off, len);
     }
 
+    private int change(int c) {
 
-    private int change(int c){
-
-        if(65 <= c && c <=90){
+        if (65 <= c && c <= 90) {
             return '$';
         }
         return Character.toUpperCase(c);

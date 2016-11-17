@@ -1,5 +1,8 @@
 package ru.itis.kpfu.logger;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Liia on 16.11.2016.
  */
@@ -11,20 +14,19 @@ public class InfoLogger extends Logger {
 
     @Override
     void log(String message) {
+        Pattern p = Pattern.compile("\\[(INFO|ERROR)\\] : (?<message>\\[[a-zA-Z -]*\\])");
+        Matcher m = p.matcher(message);
+        if (m.matches()) {
 
-        String[] splitedMessage = message.split(" : ");
+            writeMessage(m.group("message"));
 
-        String mesType = splitedMessage[0].substring(1, splitedMessage[0].length() - 1);
-        if(mesType.equals(this.level) || mesType.equals("ERROR")){
-            writeMessage(splitedMessage[1]);
         }
-
-        if(this.next != null){
+        if (next != null) {
             next.log(message);
         }
     }
 
-    protected void writeMessage(String message){
+    protected void writeMessage(String message) {
         System.out.println(message);
     }
 }

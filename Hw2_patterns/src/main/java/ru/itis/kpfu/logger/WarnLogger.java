@@ -1,5 +1,8 @@
 package ru.itis.kpfu.logger;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Liia on 16.11.2016.
  */
@@ -11,19 +14,20 @@ public class WarnLogger extends Logger {
 
     @Override
     void log(String message) {
+        Pattern p = Pattern.compile("^\\[WARN\\] : (?<message>\\[[a-zA-Z -]*\\])");
+        Matcher m = p.matcher(message);
+        if (m.matches()) {
 
-        String[] splitedMessage = message.split(" : ");
-        String mesType = splitedMessage[0].substring(1, splitedMessage[0].length() - 1);
-        if(mesType.equals(this.level)){
-            writeMessage(splitedMessage[1]);
+            writeMessage(m.group("message"));
+
         }
-
-        if(this.next != null){
+        if (this.next != null) {
             next.log(message);
         }
     }
 
-    protected void writeMessage(String message){
+    protected void writeMessage(String message) {
         System.out.println(message);
     }
+
 }
