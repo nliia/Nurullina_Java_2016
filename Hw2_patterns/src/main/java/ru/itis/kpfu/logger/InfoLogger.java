@@ -8,25 +8,12 @@ import java.util.regex.Pattern;
  */
 public class InfoLogger extends Logger {
     public InfoLogger() {
-        this.level = "INFO";
+        this.level = "(INFO|ERROR)";
     }
 
 
     @Override
-    void log(String message) {
-        Pattern p = Pattern.compile("\\[(INFO|ERROR)\\] : (?<message>\\[[a-zA-Z -]*\\])");
-        Matcher m = p.matcher(message);
-        if (m.matches()) {
-
-            writeMessage(m.group("message"));
-
-        }
-        if (next != null) {
-            next.log(message);
-        }
-    }
-
-    protected void writeMessage(String message) {
-        System.out.println(message);
+    protected void log(String message) {
+        super.log(message);
     }
 }
