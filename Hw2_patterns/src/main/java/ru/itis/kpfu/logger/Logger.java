@@ -2,6 +2,7 @@ package ru.itis.kpfu.logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  * Created by Liia on 16.11.2016.
  */
@@ -30,10 +31,10 @@ public abstract class Logger {
         StringBuilder expPart = new StringBuilder();
         expPart.append("(");
 
-        for (int i = 0; i < levels.length; i++) {
+        for (int i = 0; i < levels.length - 1; i++) {
             expPart = expPart.append(levels[i] + "|");
         }
-
+        expPart.append(levels[levels.length - 1]);
         expPart.append(")");
         return expPart.toString();
     }
