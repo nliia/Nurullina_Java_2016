@@ -2,7 +2,6 @@ package ru.itis.kpfu.logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by Liia on 16.11.2016.
