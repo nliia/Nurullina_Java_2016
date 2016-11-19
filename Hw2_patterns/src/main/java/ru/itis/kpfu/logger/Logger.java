@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  */
 public abstract class Logger {
 
-    protected String level;
+    protected Level level;
     protected Logger next;
 
     protected void setNext(Logger next) {
@@ -18,10 +18,9 @@ public abstract class Logger {
     protected void log(String message) {
         Pattern p = Pattern.compile("^\\[" + level + "\\] : (?<message>\\[[a-zA-Z -]*\\])$");
         Matcher m = p.matcher(message);
+
         if (m.matches()) {
-
             System.out.println(m.group("message"));
-
         }
 
         if (this.next != null) {

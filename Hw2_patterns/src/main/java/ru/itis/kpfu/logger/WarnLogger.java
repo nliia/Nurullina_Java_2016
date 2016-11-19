@@ -5,11 +5,6 @@ package ru.itis.kpfu.logger;
  */
 public class WarnLogger extends Logger {
     public WarnLogger() {
-        this.level = "WARN";
-    }
-
-    @Override
-    protected void log(String message) {
-        super.log(message);
+        level = Level.WARN;
     }
 }

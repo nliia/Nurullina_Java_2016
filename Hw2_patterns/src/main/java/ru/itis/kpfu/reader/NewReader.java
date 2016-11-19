@@ -5,9 +5,9 @@ import java.io.*;
 /**
  * Created by Liia on 16.11.2016.
  */
-public class ChangeReader extends FilterReader {
+public class NewReader extends FilterReader {
 
-    public ChangeReader(Reader in) {
+    public NewReader(Reader in) {
         super(in);
     }
 
@@ -23,7 +23,6 @@ public class ChangeReader extends FilterReader {
     }
 
     private int change(int c) {
-
         if (65 <= c && c <= 90) {
             return '$';
         }
