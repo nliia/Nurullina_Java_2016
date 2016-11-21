@@ -3,52 +3,45 @@ package ru.itis.kpfu.logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Liia on 16.11.2016.
- */
 public abstract class Logger {
+    private Matcher m;
+    private Pattern p;
+    private Level[] levels;
+    private Logger next;
+    private String mainLevel;
 
-    protected Level[] levels;
-    protected Logger next;
-
-    protected Logger(Level... level) {
+    void setLevelAndCheckMessage(Level... level) {
         levels = level;
+        if (levels.length == 1) {
+            mainLevel = levels[0].toString();
+        } else {
+            mainLevel = expPartCompiler(levels);
+        }
+        p = Pattern.compile("^\\[" + mainLevel + "\\] : (?<message>\\[[a-zA-Z -]*\\])$");
     }
 
-    protected void setNext(Logger next) {
+    void setNext(Logger next) {
         this.next = next;
     }
 
-    protected void log(String message) {
-        if (levels.length == 1) {
-            messageChecker(message, levels[0].toString());
-        } else {
-            messageChecker(message, expPartCompiler(levels));
+    void log(String message) {
+        m = p.matcher(message);
+        if (m.matches()) {
+            System.out.println(m.group("message"));
+        }
+        if (next != null) {
+            next.log(message);
         }
     }
 
     private String expPartCompiler(Level[] levels) {
         StringBuilder expPart = new StringBuilder();
         expPart.append("(");
-
         for (int i = 0; i < levels.length - 1; i++) {
-            expPart = expPart.append(levels[i] + "|");
+            expPart.append(levels[i] + "|");
         }
         expPart.append(levels[levels.length - 1]);
         expPart.append(")");
         return expPart.toString();
-    }
-
-    private void messageChecker(String message, String level) {
-        Pattern p = Pattern.compile("^\\[" + level + "\\] : (?<message>\\[[a-zA-Z -]*\\])$");
-        Matcher m = p.matcher(message);
-
-        if (m.matches()) {
-            System.out.println(m.group("message"));
-        }
-
-        if (this.next != null) {
-            next.log(message);
-        }
     }
 }

@@ -7,7 +7,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        Reader is = new NewReader(new InputStreamReader(Main.class.getClassLoader().getResourceAsStream("text.txt")));
+        Reader is = new UpperToDollarAndLowerToUpperReader(new InputStreamReader(Main.class.getClassLoader().getResourceAsStream("text.txt")));
         int c;
         while ((c = is.read()) != -1) {
             System.out.print((char) c);

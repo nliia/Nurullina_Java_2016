@@ -5,6 +5,6 @@ package ru.itis.kpfu.logger;
  */
 public class InfoLogger extends Logger {
     public InfoLogger() {
-        super(Level.ERROR, Level.INFO);
+        setLevelAndCheckMessage(Level.ERROR, Level.INFO);
     }
 }

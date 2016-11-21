@@ -5,9 +5,9 @@ import java.io.*;
 /**
  * Created by Liia on 16.11.2016.
  */
-public class NewReader extends FilterReader {
+public class UpperToDollarAndLowerToUpperReader extends FilterReader {
 
-    public NewReader(Reader in) {
+    public UpperToDollarAndLowerToUpperReader(Reader in) {
         super(in);
     }
 

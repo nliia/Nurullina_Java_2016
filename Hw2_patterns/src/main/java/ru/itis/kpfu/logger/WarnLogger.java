@@ -5,6 +5,6 @@ package ru.itis.kpfu.logger;
  */
 public class WarnLogger extends Logger {
     public WarnLogger() {
-        super(Level.WARN);
+        setLevelAndCheckMessage(Level.WARN);
     }
 }
