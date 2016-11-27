@@ -4,10 +4,10 @@ import java.sql.Date;
 
 public class Community {
     private Long id;
-    private Long founder_id;
+    private Long founderId;
     private String name;
     private String description;
-    private Date created_at;
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -17,12 +17,12 @@ public class Community {
         this.id = id;
     }
 
-    public Long getFounder_id() {
-        return founder_id;
+    public Long getFounderId() {
+        return founderId;
     }
 
-    public void setFounder_id(Long founder_id) {
-        this.founder_id = founder_id;
+    public void setFounderId(Long founderId) {
+        this.founderId = founderId;
     }
 
     public String getName() {
@@ -41,11 +41,11 @@ public class Community {
         this.description = description;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

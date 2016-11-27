@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 public class News {
     private Long id;
-    private Long community_id;
-    private Long author_id;
+    private Long communityId;
+    private Long authorId;
     private String text;
-    private Timestamp created_at;
+    private Timestamp createdAt;
 
     public Long getId() {
         return id;
@@ -17,20 +17,20 @@ public class News {
         this.id = id;
     }
 
-    public Long getCommunity_id() {
-        return community_id;
+    public Long getCommunityId() {
+        return communityId;
     }
 
-    public void setCommunity_id(Long community_id) {
-        this.community_id = community_id;
+    public void setCommunityId(Long communityId) {
+        this.communityId = communityId;
     }
 
-    public Long getAuthor_id() {
-        return author_id;
+    public Long getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor_id(Long author_id) {
-        this.author_id = author_id;
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public String getText() {
@@ -41,11 +41,11 @@ public class News {
         this.text = text;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }

@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 
 public class Request {
     private Long id;
-    private Long needy_id;
-    private Long volunteer_id;
+    private Long needyId;
+    private Long volunteerId;
     private String address;
     private Float latitude;
     private Float longitude;
-    private Timestamp created_at;
+    private Timestamp createdAt;
     private String service_type;
     private String status;
 
@@ -21,20 +21,20 @@ public class Request {
         this.id = id;
     }
 
-    public Long getNeedy_id() {
-        return needy_id;
+    public Long getNeedyId() {
+        return needyId;
     }
 
-    public void setNeedy_id(Long needy_id) {
-        this.needy_id = needy_id;
+    public void setNeedyId(Long needyId) {
+        this.needyId = needyId;
     }
 
-    public Long getVolunteer_id() {
-        return volunteer_id;
+    public Long getVolunteerId() {
+        return volunteerId;
     }
 
-    public void setVolunteer_id(Long volunteer_id) {
-        this.volunteer_id = volunteer_id;
+    public void setVolunteerId(Long volunteerId) {
+        this.volunteerId = volunteerId;
     }
 
     public String getAddress() {
@@ -61,12 +61,12 @@ public class Request {
         this.longitude = longitude;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getService_type() {

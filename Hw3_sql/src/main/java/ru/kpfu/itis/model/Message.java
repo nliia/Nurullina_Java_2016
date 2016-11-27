@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 public class Message {
     private Long id;
-    private Long sender_id;
-    private Long recipient_id;
+    private Long senderId;
+    private Long recipientId;
     private  String text;
-    private Timestamp created_at;
+    private Timestamp createdAt;
     private String status;
 
     public Long getId() {
@@ -18,20 +18,20 @@ public class Message {
         this.id = id;
     }
 
-    public Long getSender_id() {
-        return sender_id;
+    public Long getSenderId() {
+        return senderId;
     }
 
-    public void setSender_id(Long sender_id) {
-        this.sender_id = sender_id;
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
     }
 
-    public Long getRecipient_id() {
-        return recipient_id;
+    public Long getRecipientId() {
+        return recipientId;
     }
 
-    public void setRecipient_id(Long recipient_id) {
-        this.recipient_id = recipient_id;
+    public void setRecipientId(Long recipientId) {
+        this.recipientId = recipientId;
     }
 
     public String getText() {
@@ -42,12 +42,12 @@ public class Message {
         this.text = text;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getStatus() {

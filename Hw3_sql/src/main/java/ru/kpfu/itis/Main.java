@@ -4,10 +4,10 @@ import ru.kpfu.itis.dao.CommunityDao;
 import ru.kpfu.itis.dao.NewsDao;
 import ru.kpfu.itis.dao.RequestDao;
 import ru.kpfu.itis.dao.UserDao;
-import ru.kpfu.itis.daoImpl.CommunityDaoImpl;
-import ru.kpfu.itis.daoImpl.NewsDaoImpl;
-import ru.kpfu.itis.daoImpl.RequestDaoImpl;
-import ru.kpfu.itis.daoImpl.UserDaoImpl;
+import ru.kpfu.itis.dao.impl.CommunityDaoImpl;
+import ru.kpfu.itis.dao.impl.NewsDaoImpl;
+import ru.kpfu.itis.dao.impl.RequestDaoImpl;
+import ru.kpfu.itis.dao.impl.UserDaoImpl;
 import ru.kpfu.itis.model.Community;
 import ru.kpfu.itis.model.Request;
 import ru.kpfu.itis.model.User;
@@ -20,15 +20,18 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println("Доступные команды: Добавить заявку, Добавить пользователя, " +
-                    "Редактировать новость, Редактировать сообщество, Количество новостей сообществ одного основателя, Самый активный пользователь за сезон, Самый активный волонтер, Выход");
+            System.out.println("Доступные команды: Добавить заявку(1), Добавить пользователя(2), " +
+                    "Редактировать новость(3), Редактировать сообщество(4), " +
+                    "Количество новостей сообществ одного основателя(5), Самый активный пользователь за сезон(6)," +
+                    " Самый активный волонтер(7), Выход(8)");
+            System.out.println("Введите номер команды:");
             String mainCommand = sc.nextLine();
 
-            if (mainCommand.equals("Добавить заявку")) {
+            if (mainCommand.equals("1")) {
                 Request newReq = new Request();
                 RequestDao reqDao = new RequestDaoImpl();
                 System.out.println("Ввeдите id нуждающегося");
-                newReq.setNeedy_id(Long.parseLong(sc.nextLine()));
+                newReq.setNeedyId(Long.parseLong(sc.nextLine()));
                 System.out.println("Введите адрес");
                 newReq.setAddress(sc.nextLine());
                 System.out.println("Введите широту");
@@ -38,11 +41,11 @@ public class Main {
                 System.out.println("Введите тип сервиса");
                 newReq.setService_type(sc.nextLine());
                 newReq.setStatus("PENDING");
-                newReq.setCreated_at(new Timestamp(System.currentTimeMillis()));
+                newReq.setCreatedAt(new Timestamp(System.currentTimeMillis()));
                 reqDao.add(newReq);
 
             }
-            if (mainCommand.equals("Добавить пользователя")) {
+            if (mainCommand.equals("2")) {
                 User newUser = new User();
                 UserDao userDao = new UserDaoImpl();
                 System.out.println("Введите имя");
@@ -63,7 +66,7 @@ public class Main {
                 newUser.setStatus("ACTIVE");
                 userDao.add(newUser);
             }
-            if (mainCommand.equals("Редактировать новость")) {
+            if (mainCommand.equals("3")) {
                 NewsDao newsDao = new NewsDaoImpl();
                 System.out.println("Введите id новости, которую хотите изменить");
                 Long id = Long.parseLong(sc.nextLine());
@@ -71,7 +74,7 @@ public class Main {
                 String text = sc.nextLine();
                 newsDao.update(text, id);
             }
-            if (mainCommand.equals("Редактировать сообщество")) {
+            if (mainCommand.equals("4")) {
                 CommunityDao communityDao = new CommunityDaoImpl();
                 System.out.println("Введите название сообщества, которое вы хотите обновить");
                 String name = sc.nextLine();
@@ -82,7 +85,7 @@ public class Main {
                 community.setDescription(sc.nextLine());
                 communityDao.update(community);
             }
-            if (mainCommand.equals("Количество новостей сообществ одного основателя")) {
+            if (mainCommand.equals("5")) {
                 NewsDao newsDao = new NewsDaoImpl();
                 System.out.println("Введите id основателя");
                 int result = newsDao.allMessagesByCommunityOfFounder(Long.parseLong(sc.nextLine()));
@@ -91,12 +94,12 @@ public class Main {
                 else
                     System.out.println("Кол-во сообщений:" + result);
             }
-            if (mainCommand.equals("Самый активный пользователь за сезон")) {
+            if (mainCommand.equals("6")) {
                 UserDao userDao = new UserDaoImpl();
                 System.out.println("Введите сезон (зима/осень/весна/лето)");
                 System.out.println(userDao.mostActiveRecipientOfSeason(sc.nextLine()));
             }
-            if (mainCommand.equals("Самый активный волонтер")) {
+            if (mainCommand.equals("7")) {
                 UserDao userDao = new UserDaoImpl();
                 System.out.println("Будет выбраны самые активные волонтеры," +
                         " откликнувшиеся на заявки, которые были поданы по адресу, " +
@@ -104,7 +107,7 @@ public class Main {
                 System.out.println(userDao.mostActiveVolunteerOfAddress(sc.nextLine()));
             }
 
-            if (mainCommand.equals("Выход"))
+            if (mainCommand.equals("8"))
                 running = false;
         }
     }
