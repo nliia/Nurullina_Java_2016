@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: ru.kpfu.itis.Main
+Main-Class: ru.kpfu.itis.Main
+
