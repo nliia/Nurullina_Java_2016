@@ -21,7 +21,7 @@ public class CalculatorService implements Operator {
         if (m.matches())
             exp = m.group(1);
         else
-            return result = "Неверный uri";
+            return "Неверный uri";
 
         m = expressionPattern.matcher(exp);
         if (m.matches()) {
@@ -39,7 +39,10 @@ public class CalculatorService implements Operator {
                     result = String.valueOf(calculator.mult(firstNum, secondNum));
                     break;
                 case DIVIDE:
-                    result = String.valueOf(calculator.div(firstNum, secondNum));
+                    if (secondNum == 0)
+                        result = "Ошибка деления";
+                    else
+                        result = String.valueOf(calculator.div(firstNum, secondNum));
                     break;
             }
         } else {
