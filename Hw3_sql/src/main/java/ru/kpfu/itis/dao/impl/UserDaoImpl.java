@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }  finally {
+        } finally {
             closeResources(rs, ptmt, con);
         }
     }
@@ -105,7 +105,7 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }  finally {
+        } finally {
             closeResources(rs, ptmt, con);
         }
         return nameList;
@@ -124,7 +124,7 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }  finally {
+        } finally {
             closeResources(rs, ptmt, con);
         }
         return volunteers;
