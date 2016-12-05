@@ -16,16 +16,16 @@ public class ConnectionFactory {
     private static ConnectionFactory connFactory = null;
 
     private ConnectionFactory() {
-        try (InputStream in = ConnectionFactory.class
-                .getClassLoader().getResourceAsStream("database.properties")) {
-            Properties properties = new Properties();
-            properties.load(in);
-            url = properties.getProperty("url");
-            username = properties.getProperty("username");
-            password = properties.getProperty("password");
-        } catch (IOException ex) {
-            exit(ex, "Failed to load properties");
-        }
+            try (InputStream in = ConnectionFactory.class
+                    .getClassLoader().getResourceAsStream("database.properties")) {
+                Properties properties = new Properties();
+                properties.load(in);
+                url = properties.getProperty("url");
+                username = properties.getProperty("username");
+                password = properties.getProperty("password");
+            } catch (IOException ex) {
+                exit(ex, "Failed to load properties");
+            }
     }
 
     public Connection getConnection() {
