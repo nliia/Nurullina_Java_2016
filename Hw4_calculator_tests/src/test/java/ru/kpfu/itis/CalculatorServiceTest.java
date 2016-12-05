@@ -5,28 +5,39 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.kpfu.itis.service.CalculatorService;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class CalculatorServiceTest {
     private static CalculatorService calculatorService;
     private static String uri;
+    private static Calculator calculator;
     private static final String INCORRECT_URI = "/calc5-5";
     private static final String CORRECT_MULTI_EXP = "/calc/5.89*4.5";
     private static final String CORRECT_PLUS_EXP = "/calc/5.89+4.5";
     private static final String CORRECT_MINUS_EXP = "/calc/5.89-4.5";
     private static final String CORRECT_DIV_EXP = "/calc/5.89/4.5";
     private static final String INCORRECT_EXP = "/calc/-89";
-    private static final String ZERO_DIVIDER_EXP = "/calc/6.8/0";
     private static final String INCORRECT_URI_ANSWER = "Неверный uri";
     private static final String INCORRECT_EXP_ANSWER = "Неверное выражение";
     private static final Double CORRECT_MULT_EXP_ANSWER = 5.89 * 4.5;
     private static final Double CORRECT_DIV_EXP_ANSWER = 5.89 / 4.5;
     private static final Double CORRECT_MINUS_EXP_ANSWER = 5.89 - 4.5;
     private static final Double CORRECT_PLUS_EXP_ANSWER = 5.89 + 4.5;
-    private static final String CORRECT_ZERO_DIVIDER_ANSWER = "Ошибка деления";
     private static final double DELTA = 10e-2;
+    private static final double FIRST_NUM = 5.89;
+    private static final double SECOND_NUM = 4.5;
+    private static final String ZERO_DIVIDER_ERROR = "Ошибка деления";
 
     @BeforeClass
     public static void setUp() {
-        calculatorService = new CalculatorService();
+        calculator = mock(Calculator.class);
+        when(calculator.div(FIRST_NUM, SECOND_NUM)).thenReturn(String.valueOf(CORRECT_DIV_EXP_ANSWER));
+        when(calculator.sum(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_PLUS_EXP_ANSWER);
+        when(calculator.mult(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_MULT_EXP_ANSWER);
+        when(calculator.sub(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_MINUS_EXP_ANSWER);
+        when(calculator.div(FIRST_NUM, 0)).thenReturn(ZERO_DIVIDER_ERROR);
+        calculatorService = new CalculatorService(calculator);
     }
 
     @Test
@@ -70,12 +81,5 @@ public class CalculatorServiceTest {
         uri = CORRECT_MINUS_EXP;
         Double result = Double.valueOf(calculatorService.calculate(uri));
         Assert.assertEquals(CORRECT_MINUS_EXP_ANSWER, result, DELTA);
-    }
-
-    @Test
-    public void calculateShouldReturnCorrectAnswerWhenDividerIsZero() {
-        uri = ZERO_DIVIDER_EXP;
-        String result = calculatorService.calculate(uri);
-        Assert.assertEquals(CORRECT_ZERO_DIVIDER_ANSWER, result);
     }
 }

@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CalculatorServlet extends HttpServlet {
+    public CalculatorService calculatorService;
+
+    public CalculatorServlet(CalculatorService calculatorService) {
+        this.calculatorService = calculatorService;
+    }
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uri = req.getRequestURI();
-        CalculatorService calculatorService = new CalculatorService();
         String result = calculatorService.calculate(uri);
         req.setAttribute("result", result);
         RequestDispatcher reqDisp = req.getRequestDispatcher("/result.ftl");

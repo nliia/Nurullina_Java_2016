@@ -14,46 +14,50 @@ public class CalculatorService implements Operator {
     private double secondNum;
     private char operator;
     private String exp;
+    private String result = null;
+    public Calculator calculator;
+
+    public CalculatorService(Calculator calculator) {
+        this.calculator = calculator;
+    }
 
     public String calculate(String uri) {
-        String result = null;
+
         m = uriPattern.matcher(uri);
         if (m.matches())
             exp = m.group(1);
         else
             return "Неверный uri";
-
         m = expressionPattern.matcher(exp);
         if (m.matches()) {
-            Calculator calculator = new Calculator();
-            parseExp(exp);
-
-            switch (operator) {
-                case PLUS:
-                    result = String.valueOf(calculator.sum(firstNum, secondNum));
-                    break;
-                case MINUS:
-                    result = String.valueOf(calculator.sub(firstNum, secondNum));
-                    break;
-                case MULTIPY:
-                    result = String.valueOf(calculator.mult(firstNum, secondNum));
-                    break;
-                case DIVIDE:
-                    if (secondNum == 0)
-                        result = "Ошибка деления";
-                    else
-                        result = String.valueOf(calculator.div(firstNum, secondNum));
-                    break;
-            }
+            parseExp();
+            calculateExpression(operator, firstNum, secondNum);
         } else {
             result = "Неверное выражение";
         }
         return result;
     }
 
-    private void parseExp(String exp) {
+    private void parseExp() {
         firstNum = Double.parseDouble(m.group("first"));
         secondNum = Double.parseDouble(m.group("second"));
         operator = m.group("operator").charAt(0);
+    }
+
+    private void calculateExpression(char operator, double firstNum, double secondNum) {
+        switch (operator) {
+            case PLUS:
+                result = String.valueOf(calculator.sum(firstNum, secondNum));
+                break;
+            case MINUS:
+                result = String.valueOf(calculator.sub(firstNum, secondNum));
+                break;
+            case MULTIPY:
+                result = String.valueOf(calculator.mult(firstNum, secondNum));
+                break;
+            case DIVIDE:
+                result = calculator.div(firstNum, secondNum);
+                break;
+        }
     }
 }
