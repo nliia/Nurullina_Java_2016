@@ -9,8 +9,7 @@ public class CalculatorTest {
     private static final double FIRST_NUM = 2.0d;
     private static final double SECOND_NUM = 5.6d;
     private static final double DELTA = 10e-2;
-    private static final String ZERO_DIVIDER_ERROR = "Ошибка деления";
-    private static final String CORRECT_ANSWER_FOR_DIV = String.valueOf((FIRST_NUM / SECOND_NUM));
+    private static final double CORRECT_ANSWER_FOR_DIV = FIRST_NUM / SECOND_NUM;
 
     @BeforeClass
     public static void setUp() {
@@ -30,7 +29,7 @@ public class CalculatorTest {
 
     @Test
     public void divShouldReturnCorrectValue() {
-        Assert.assertEquals(CORRECT_ANSWER_FOR_DIV, calculator.div(FIRST_NUM, SECOND_NUM));
+        Assert.assertEquals(CORRECT_ANSWER_FOR_DIV, calculator.div(FIRST_NUM, SECOND_NUM), DELTA);
     }
 
     @Test
@@ -38,9 +37,10 @@ public class CalculatorTest {
         Assert.assertEquals(FIRST_NUM * SECOND_NUM, calculator.mult(FIRST_NUM, SECOND_NUM), DELTA);
     }
 
-    @Test
+
+    @Test(expected = ArithmeticException.class)
     public void divShouldReturnCorrectResultWhenDividerIsZero() {
-        Assert.assertEquals(ZERO_DIVIDER_ERROR, calculator.div(FIRST_NUM, 0));
+        calculator.div(FIRST_NUM, 0);
     }
 
 }

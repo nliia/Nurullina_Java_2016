@@ -27,16 +27,15 @@ public class CalculatorServiceTest {
     private static final double DELTA = 10e-2;
     private static final double FIRST_NUM = 5.89;
     private static final double SECOND_NUM = 4.5;
-    private static final String ZERO_DIVIDER_ERROR = "Ошибка деления";
 
     @BeforeClass
     public static void setUp() {
         calculator = mock(Calculator.class);
-        when(calculator.div(FIRST_NUM, SECOND_NUM)).thenReturn(String.valueOf(CORRECT_DIV_EXP_ANSWER));
+        when(calculator.div(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_DIV_EXP_ANSWER);
         when(calculator.sum(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_PLUS_EXP_ANSWER);
         when(calculator.mult(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_MULT_EXP_ANSWER);
         when(calculator.sub(FIRST_NUM, SECOND_NUM)).thenReturn(CORRECT_MINUS_EXP_ANSWER);
-        when(calculator.div(FIRST_NUM, 0)).thenReturn(ZERO_DIVIDER_ERROR);
+        when(calculator.div(FIRST_NUM, 0)).thenThrow(ArithmeticException.class);
         calculatorService = new CalculatorService(calculator);
     }
 

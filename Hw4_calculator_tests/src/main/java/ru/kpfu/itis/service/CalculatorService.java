@@ -13,6 +13,8 @@ public class CalculatorService implements Operator {
     private double firstNum;
     private double secondNum;
     private char operator;
+    private String INVALID_EXP_RESULT = "Неверное выражение";
+    private String INVALID_URL_RESULT = "Неверный uri";
     private String exp;
     private String result = null;
     public Calculator calculator;
@@ -27,13 +29,13 @@ public class CalculatorService implements Operator {
         if (m.matches())
             exp = m.group(1);
         else
-            return "Неверный uri";
+            return INVALID_URL_RESULT;
         m = expressionPattern.matcher(exp);
         if (m.matches()) {
             parseExp();
-            calculateExpression(operator, firstNum, secondNum);
+            calculateExpression();
         } else {
-            result = "Неверное выражение";
+            result = INVALID_EXP_RESULT;
         }
         return result;
     }
@@ -44,7 +46,7 @@ public class CalculatorService implements Operator {
         operator = m.group("operator").charAt(0);
     }
 
-    private void calculateExpression(char operator, double firstNum, double secondNum) {
+    private void calculateExpression() {
         switch (operator) {
             case PLUS:
                 result = String.valueOf(calculator.sum(firstNum, secondNum));
@@ -56,7 +58,7 @@ public class CalculatorService implements Operator {
                 result = String.valueOf(calculator.mult(firstNum, secondNum));
                 break;
             case DIVIDE:
-                result = calculator.div(firstNum, secondNum);
+                result = String.valueOf(calculator.div(firstNum, secondNum));
                 break;
         }
     }

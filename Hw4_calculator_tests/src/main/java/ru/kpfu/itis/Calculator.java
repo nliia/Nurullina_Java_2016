@@ -13,13 +13,12 @@ public class Calculator {
         return a * b;
     }
 
-    public String div(double a, double b) {
+    public double div(double a, double b) {
 
         if (b == 0)
-            return "Ошибка деления";
+            throw new ArithmeticException();
         else {
-            double result = a / b;
-            return String.valueOf(result);
+            return a / b;
         }
     }
 }
