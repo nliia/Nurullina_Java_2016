@@ -10,7 +10,6 @@ import static org.mockito.Mockito.when;
 
 public class CalculatorServiceTest {
     private static CalculatorService calculatorService;
-    private static String uri;
     private static Calculator calculator;
     private static final String INCORRECT_URI = "/calc5-5";
     private static final String CORRECT_MULTI_EXP = "/calc/5.89*4.5";
@@ -41,44 +40,38 @@ public class CalculatorServiceTest {
 
     @Test
     public void calculateShouldReturnCorrectAnswerWhenUriIsIncorrect() {
-        uri = INCORRECT_URI;
-        String result = calculatorService.calculate(uri);
+        String result = calculatorService.calculate(INCORRECT_URI);
         Assert.assertEquals(INCORRECT_URI_ANSWER, result);
     }
 
 
     @Test
     public void calculateShouldReturnCorrectAnswerWhenExpIsIncorrect() {
-        uri = INCORRECT_EXP;
-        String result = calculatorService.calculate(uri);
+        String result = calculatorService.calculate(INCORRECT_EXP);
         Assert.assertEquals(INCORRECT_EXP_ANSWER, result);
     }
 
     @Test
     public void calculateShouldReturnCorrectAnswerWhenMultExpIsCorrect() {
-        uri = CORRECT_MULTI_EXP;
-        Double result = Double.valueOf(calculatorService.calculate(uri));
+        Double result = Double.valueOf(calculatorService.calculate(CORRECT_MULTI_EXP));
         Assert.assertEquals(CORRECT_MULT_EXP_ANSWER, result, DELTA);
     }
 
     @Test
     public void calculateShouldReturnCorrectAnswerWhenPlusExpIsCorrect() {
-        uri = CORRECT_PLUS_EXP;
-        Double result = Double.valueOf(calculatorService.calculate(uri));
+        Double result = Double.valueOf(calculatorService.calculate(CORRECT_PLUS_EXP));
         Assert.assertEquals(CORRECT_PLUS_EXP_ANSWER, result, DELTA);
     }
 
     @Test
-    public void calculateShouldReturnCorrectAnswerWhenDivMultExpIsCorrect() {
-        uri = CORRECT_DIV_EXP;
-        Double result = Double.valueOf(calculatorService.calculate(uri));
+    public void calculateShouldReturnCorrectAnswerWhenDivExpIsCorrect() {
+        Double result = Double.valueOf(calculatorService.calculate(CORRECT_DIV_EXP));
         Assert.assertEquals(CORRECT_DIV_EXP_ANSWER, result, DELTA);
     }
 
     @Test
     public void calculateShouldReturnCorrectAnswerWhenMinusExpIsCorrect() {
-        uri = CORRECT_MINUS_EXP;
-        Double result = Double.valueOf(calculatorService.calculate(uri));
+        Double result = Double.valueOf(calculatorService.calculate(CORRECT_MINUS_EXP));
         Assert.assertEquals(CORRECT_MINUS_EXP_ANSWER, result, DELTA);
     }
 }
