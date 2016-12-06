@@ -13,7 +13,7 @@ public class NewsDaoImpl implements NewsDao {
     private Connection con = getConnection();
     private PreparedStatement ptmt = null;
     private ResultSet rs = null;
-    private static final String UPDATE_NEWS_QUERY = "UPDATE news SET text = ? WHERE id = ?";
+    private static final String UPDATE_NEWS_QUERY =  "UPDATE news SET text = ? WHERE id = ?";
     private static final String MESSAGES_BY_COMMUNITY_OF_FOUNDER_QUERY = "WITH newsCount AS (\n" +
             "    SELECT\n" +
             "      count(news.id) count,\n" +
@@ -25,7 +25,6 @@ public class NewsDaoImpl implements NewsDao {
             "SELECT newsCount.count\n" +
             "FROM newsCount\n" +
             "WHERE founder_id = ?";
-
     public void update(String text, Long id) {
         try {
             ptmt = con.prepareStatement(UPDATE_NEWS_QUERY);
