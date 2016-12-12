@@ -34,7 +34,7 @@
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <descriptorRef>chat</descriptorRef>
                     </descriptorRefs>
                 </configuration>
                 <executions>
@@ -49,5 +49,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.nurullina</groupId>
+            <artifactId>chat_window</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

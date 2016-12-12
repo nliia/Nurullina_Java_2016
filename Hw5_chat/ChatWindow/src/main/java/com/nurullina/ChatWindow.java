@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
 public class ChatWindow extends JFrame implements ActionListener {
-    JTextField textField;
-    JTextArea textArea;
-    JButton button1;
-    PrintWriter pw;
+    protected JTextField textField;
+    protected JTextArea textArea;
+    protected JButton button1;
+    protected PrintWriter pw;
 
     public void setPw(PrintWriter pw) {
         this.pw = pw;
