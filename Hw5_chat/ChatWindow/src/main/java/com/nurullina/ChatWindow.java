@@ -29,7 +29,7 @@ public class ChatWindow extends JFrame implements ActionListener {
 
     private void initComponents() {
         this.setSize(300, 300);
-        this.setTitle("Client");
+        this.setTitle("Chat");
         textField = new JTextField(100);
         this.add(textField, BorderLayout.NORTH);
         textArea = new JTextArea();
