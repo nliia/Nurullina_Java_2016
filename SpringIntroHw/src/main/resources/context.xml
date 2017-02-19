@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config></context:annotation-config>
+    <bean id="restaurant" class="ru.kpfu.itis.entity.impl.RestaurantImpl"></bean>
+
+
+    <bean id="waiter" class="ru.kpfu.itis.entity.impl.WaiterImpl">
+        <property name="order" ref="order"/>
+    </bean>
+
+    <bean id="britishChef" class="ru.kpfu.itis.entity.impl.BritishChef"/>
+    <bean id="japaneseChef" class="ru.kpfu.itis.entity.impl.JapaneseChef"/>
+    <bean id="order" class="ru.kpfu.itis.entity.impl.OrderImpl" scope="prototype"/>
+    <bean id="tray" class="ru.kpfu.itis.entity.TrayFactory">
+        <property name="size" value="big"></property>
+    </bean>
+</beans>
