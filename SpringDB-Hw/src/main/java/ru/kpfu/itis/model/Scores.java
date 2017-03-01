@@ -1,5 +1,6 @@
 package ru.kpfu.itis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.kpfu.itis.model.enums.Subject;
 
 import javax.persistence.*;
@@ -10,18 +11,18 @@ public class Scores {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Enumerated(EnumType.STRING)
-    private Subject subject_type;
+    @Column(name = "subjectType")
+    private Subject subjectType;
+
     private Integer score;
-    private Long student_id;
 
-    public long getStudent_id() {
-        return student_id;
-    }
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
-    public void setStudent_id(long student_id) {
-        this.student_id = student_id;
-    }
 
     public int getScore() {
         return score;
@@ -31,12 +32,12 @@ public class Scores {
         this.score = score;
     }
 
-    public Subject getSubject_type() {
-        return subject_type;
+    public Subject getSubjectType() {
+        return subjectType;
     }
 
-    public void setSubject_type(Subject subject_type) {
-        this.subject_type = subject_type;
+    public void setSubjectType(Subject subjectType) {
+        this.subjectType = subjectType;
     }
 
     public long getId() {
@@ -45,5 +46,13 @@ public class Scores {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }
