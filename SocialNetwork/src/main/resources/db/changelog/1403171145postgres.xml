@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1403171145_1" author="nliia">
+        <createTable tableName="posts">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="text" type="varchar(255)"/>
+            <column name="date" type="timestamp without time zone"/>
+            <column name="author_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1403171145_2" author="nliia">
+        <addForeignKeyConstraint baseTableName="posts"
+                                 baseColumnNames="author_id"
+                                 constraintName="posts_author_id_user_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1403171145_3" author="nliia">
+        <createSequence sequenceName="post_id_uniq"
+                        minValue="53"
+                        incrementBy="1"
+                        startValue="53"/>
+    </changeSet>
+
+</databaseChangeLog>

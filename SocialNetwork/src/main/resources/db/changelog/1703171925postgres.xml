@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1703171925_1" author="nliia">
+        <createTable tableName="rooms">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="sender" type="bigint"/>
+            <column name="receiver" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1703171823_2" author="nliia">
+        <addForeignKeyConstraint baseTableName="rooms"
+                                 baseColumnNames="sender"
+                                 constraintName="rooms_sender_user_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1703171823_3" author="nliia">
+        <addForeignKeyConstraint baseTableName="rooms"
+                                 baseColumnNames="receiver"
+                                 constraintName="rooms_receiver_user_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

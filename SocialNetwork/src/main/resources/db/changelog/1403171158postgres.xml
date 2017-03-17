@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1403171158_1" author="nliia">
+        <createTable tableName="post_comments">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="text" type="varchar(140)"/>
+            <column name="author_id" type="bigint"/>
+            <column name="post_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1403171158_2" author="nliia">
+        <addForeignKeyConstraint baseTableName="post_comments"
+                                 baseColumnNames="author_id"
+                                 constraintName="post_comments_author_id_user_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1403171158_3" author="nliia">
+        <addForeignKeyConstraint baseTableName="post_comments"
+                                 baseColumnNames="post_id"
+                                 constraintName="post_comments_post_id_posts_id_fk"
+                                 referencedTableName="posts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1403171158_4" author="nliia">
+        <createSequence sequenceName="comment_id_uniq"
+                        minValue="53"
+                        incrementBy="1"
+                        startValue="53"/>
+    </changeSet>
+
+</databaseChangeLog>
