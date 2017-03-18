@@ -1,6 +1,7 @@
 <#include "menu.ftl">
 <#macro content>
-Your chat with<a href="/id${user.id}"> ${user.firstName} ${user.firstName}</a>
+Your chat with<a href="/id${user.id}"> ${user.firstName} ${user.lastName}</a>
+<br>
     <#if messages ??>
 
         <#list messages as mes>
@@ -20,7 +21,9 @@ Your chat with<a href="/id${user.id}"> ${user.firstName} ${user.firstName}</a>
         <div class="field">
             <@sf.input placeholder="Text message" path="text" cssClass="form-control" type="text"/>
         </div>
-
+        <div class="field">
+            <input type="hidden" value="${user.id}" name="userId"/>
+        </div>
         <div class="form-group">
             <input class="btn btn-info btn-outline" type="submit" value="Send">
         </div>

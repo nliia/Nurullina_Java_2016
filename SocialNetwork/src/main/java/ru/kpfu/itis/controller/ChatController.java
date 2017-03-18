@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.entity.Message;
 import ru.kpfu.itis.entity.Room;
 import ru.kpfu.itis.entity.User;
@@ -38,7 +35,8 @@ public class ChatController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User anotherUser = userService.findById(userId);
         Room room = roomService.findBySenderAndReceiverId(currentUser, anotherUser);
-        model.addAttribute("messages", messageService.findAllByRoom(room));
+        List<Message> messages = messageService.findAllByRoom(room);
+        model.addAttribute("messages", messages);
         model.addAttribute("messageForm", new PostForm());
         model.addAttribute("user", anotherUser);
         model.addAttribute("roomId", room.getId());
@@ -46,11 +44,10 @@ public class ChatController {
     }
 
     @RequestMapping(value = "/message{roomId}", method = RequestMethod.POST)
-    public String sendMessage(@PathVariable Long roomId, @ModelAttribute("message") PostForm postForm, Model model) {
+    public String sendMessage(@PathVariable Long roomId, @ModelAttribute("message") PostForm postForm, @RequestParam(name = "userId") Long userId) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         messageService.add(new Message(postForm.getText(), new Date(), roomService.findById(roomId), currentUser));
-        System.out.println(currentUser.getId());
-        return "redirect:/chat" + currentUser.getId();
+        return "redirect:/chat" + userId;
     }
 
     @RequestMapping("/all_chats")

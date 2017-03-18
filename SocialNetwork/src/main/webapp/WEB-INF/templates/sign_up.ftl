@@ -2,6 +2,9 @@
 <#include "menu.ftl">
 <#macro content>
 <title>Sign up</title>
+
+<a href="/sign_in">Sign up</a>
+
     <@sf.form action="/sign_up" method="post" modelAttribute="user">
     <fieldset>
         <div class="field" style="width: 20%">
