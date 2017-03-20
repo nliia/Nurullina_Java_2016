@@ -9,7 +9,7 @@ public interface PostService {
 
     void add(Post post);
 
-    List<Post> getByUser(User author);
+    List<Post> getByReceiver(User receiver);
 
     Post get(Long id)
 ;

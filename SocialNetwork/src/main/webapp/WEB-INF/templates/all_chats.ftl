@@ -2,7 +2,7 @@
 <#macro content>
     <#list chats as chat>
 
-        <#if currentUser.id == chat.sender.id>
+        <#if userSession.id == chat.sender.id>
 
         <a href="/chat${chat.receiver.id}">
             <h4> ${chat.receiver.firstName} ${chat.receiver.lastName}</h4></a>

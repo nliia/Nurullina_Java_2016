@@ -14,6 +14,7 @@
             <column name="text" type="varchar(255)"/>
             <column name="date" type="timestamp without time zone"/>
             <column name="author_id" type="bigint"/>
+            <column name="receiver_id" type="bigint"/>
         </createTable>
     </changeSet>
 
@@ -24,8 +25,14 @@
                                  referencedTableName="users"
                                  referencedColumnNames="id"/>
     </changeSet>
-
     <changeSet id="1403171145_3" author="nliia">
+        <addForeignKeyConstraint baseTableName="posts"
+                                 baseColumnNames="receiver_id"
+                                 constraintName="posts_receiver_id_user_id_fk"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="1403171145_4" author="nliia">
         <createSequence sequenceName="post_id_uniq"
                         minValue="53"
                         incrementBy="1"

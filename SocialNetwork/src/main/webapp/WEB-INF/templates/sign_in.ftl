@@ -17,7 +17,7 @@
             <@sf.input path="email" cssClass="form-control" type="email"/>
             <@sf.errors path="email" cssClass="help-block"/>
         </div>
-        <div class="field" style="width: 10%">
+        <div class="field" style="width: 20%">
             <@sf.label path="password">Password</@sf.label>
             <@sf.input path="password" cssClass="form-control" type="password"/>
             <@sf.errors path="password" cssClass="help-block"/>

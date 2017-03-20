@@ -7,5 +7,5 @@ import ru.kpfu.itis.entity.User;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findAllByAuthor(User author);
+    List<Post> findAllByReceiver(User author);
 }

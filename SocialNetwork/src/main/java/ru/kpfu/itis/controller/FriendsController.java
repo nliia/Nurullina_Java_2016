@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kpfu.itis.entity.User;
 import ru.kpfu.itis.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,10 +22,12 @@ public class FriendsController {
 
     @RequestMapping
     public String getFriendsPage(Model model) {
-        List<User> users = new ArrayList<User>();
+        List<User> users;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         users = userService.getAll();
-        users.remove(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        users.remove(currentUser);
         model.addAttribute("users", users);
+        model.addAttribute("userSession", currentUser);
         return "friends";
     }
 }

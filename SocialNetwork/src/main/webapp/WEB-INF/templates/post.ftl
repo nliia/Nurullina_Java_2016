@@ -17,20 +17,16 @@ ${post.date}
 
     <h4>Comments</h4>
 
-    <@sf.form role="form" action='/post${post.id}' method="post" modelAttribute="commentForm">
-        <fieldset>
+    <form action="/post${post.id}" method="post">
+        <div class="text-field">
+            <input type="text" placeholder="Add your comment" name="comment" class="form-control">
+        </div>
 
-            <div class="field">
-                <@sf.input placeholder="Add your comment" path="text" cssClass="form-control" type="text"/>
-            </div>
+        <div class="form-group">
+            <input class="btn btn-info" type="submit" value="Send">
+        </div>
+    </form>
 
-            <div class="form-group">
-                <input class="btn btn-info btn-outline" type="submit" value="Send">
-            </div>
-
-        </fieldset>
-
-    </@sf.form>
     <#list comments as comment>
         <a href="/id${comment.author.id}">
         ${comment.author.firstName} ${comment.author.lastName}

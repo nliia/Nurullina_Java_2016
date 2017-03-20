@@ -22,10 +22,15 @@ public class Post {
     @JoinColumn(name = "author_id")
     private User author;
 
-    public Post(String text, Date date, User author) {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "receiver_id")
+    private User receiver;
+
+    public Post(String text, Date date, User author, User receiver) {
         this.text = text;
         this.date = date;
         this.author = author;
+        this.receiver = receiver;
     }
 
     public Post() {
@@ -62,5 +67,13 @@ public class Post {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 }

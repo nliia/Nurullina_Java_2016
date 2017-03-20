@@ -11,9 +11,7 @@ import ru.kpfu.itis.entity.User;
 import ru.kpfu.itis.service.MessageService;
 import ru.kpfu.itis.service.RoomService;
 import ru.kpfu.itis.service.UserService;
-import ru.kpfu.itis.util.PostForm;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +22,9 @@ public class ChatController {
     private final UserService userService;
 
     @Autowired
-    public ChatController(RoomService roomService, MessageService messageService, UserService userService) {
+    public ChatController(RoomService roomService,
+                          MessageService messageService,
+                          UserService userService) {
         this.roomService = roomService;
         this.messageService = messageService;
         this.userService = userService;
@@ -37,16 +37,18 @@ public class ChatController {
         Room room = roomService.findBySenderAndReceiverId(currentUser, anotherUser);
         List<Message> messages = messageService.findAllByRoom(room);
         model.addAttribute("messages", messages);
-        model.addAttribute("messageForm", new PostForm());
         model.addAttribute("user", anotherUser);
         model.addAttribute("roomId", room.getId());
+        model.addAttribute("userSession", currentUser);
         return "chat";
     }
 
     @RequestMapping(value = "/message{roomId}", method = RequestMethod.POST)
-    public String sendMessage(@PathVariable Long roomId, @ModelAttribute("message") PostForm postForm, @RequestParam(name = "userId") Long userId) {
+    public String sendMessage(@PathVariable Long roomId,
+                              @RequestParam("message") String message,
+                              @RequestParam(name = "userId") Long userId) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        messageService.add(new Message(postForm.getText(), new Date(), roomService.findById(roomId), currentUser));
+        messageService.add(new Message(message, new Date(), roomService.findById(roomId), currentUser));
         return "redirect:/chat" + userId;
     }
 
@@ -54,7 +56,7 @@ public class ChatController {
     public String getAllUsers(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Room> chats = roomService.findAllByUser(currentUser);
-        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("userSession", currentUser);
         model.addAttribute("chats", chats);
         return "all_chats";
     }

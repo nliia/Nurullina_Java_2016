@@ -12,7 +12,6 @@
 <h3>Posts</h3>
     <#if posts ??>
         <#list posts as post>
-        <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
 
             <a href="/post${post.id}">
             ${post.text}</a>
@@ -23,24 +22,18 @@
             </a>
 
         ${post.date}
-        </div>
         <br>
         </#list>
     </#if>
-    <@sf.form role="form" action='/id${user.id}/post' method="post" modelAttribute="postForm">
-    <fieldset>
 
-        <div class="field">
-            <@sf.input placeholder="Text here..." path="text" cssClass="form-control" type="text"/>
-        </div>
-
-        <div class="form-group">
-            <input class="btn btn-info btn-outline" type="submit" value="Send">
-        </div>
-
-    </fieldset>
-
-    </@sf.form>
+<form action="/id${user.id}/post" method="post">
+    <div class="text-field">
+        <input placeholder="Text here" css class="form-control" type="text" name="post">
+    </div>
+    <div class="form-group">
+        <input class="btn btn-info btn-outline" type="submit" value="Send">
+    </div>
+</form>
 
 
 </#macro>
